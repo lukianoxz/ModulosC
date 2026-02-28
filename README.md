@@ -4,9 +4,9 @@ Esses módulos tem o objetivo de facilitar a programação em c
 ## O que tem por enquanto?
 - **Vetor.h** : Cria array dinamica facil de usar
 - **Texto.h** : Facilita a utilização de arrays de char
-- **Stack.h** : Pilhas (LIFO)
+- **Pilha.h** : Pilhas (LIFO)
 - **Utilitarios.h** : Funções extras para facilitar algumas tarefas especificas
-- **AlgoritmosSort.h** : Algoritmos de ordenação para utilizar em vetores
+- **Arrumar.h** : Algoritmos de ordenação para utilizar em vetores
 
 ## Como usar?
 Inclua o que você for usar dentro do seu codigo e se precisar leia exemplos para entender melhor
