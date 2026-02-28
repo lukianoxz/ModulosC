@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "./Modulos/Vetor.h"
-#include "./Modulos/AlgoritimosSort.h"
+#include "./Modulos/AlgoritmosSort.h"
 #include "./Modulos/Utilitarios.h"
 
 int main(){
