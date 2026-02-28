@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "ModulosC/Stack.h"
+#include "./Modulos/Stack.h"
 
 Definir_Pilha(int);
 

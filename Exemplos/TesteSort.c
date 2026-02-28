@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "ModulosC/Vetor.h"
-#include "ModulosC/AlgoritimosSort.h"
-#include "ModulosC/Utilitarios.h"
+#include "./Modulos/Vetor.h"
+#include "./Modulos/AlgoritimosSort.h"
+#include "./Modulos/Utilitarios.h"
 
 int main(){
     Vetor_int* VetorBaguncado = Criar_Vetor_int();

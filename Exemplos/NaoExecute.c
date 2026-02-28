@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "ModulosC/String.h"
-#include "ModulosC/Utilitarios.h"
+#include "./Modulos/String.h"
+#include "./Modulos/Utilitarios.h"
 
 int main(int argc, char* argv[]){
     Vetor_String_Ptr* Argumentos;
