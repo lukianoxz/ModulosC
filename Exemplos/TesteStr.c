@@ -1,4 +1,4 @@
-#include "./Modulos/String.h"
+#include "./Modulos/Texto.h"
 
 int main(){
 

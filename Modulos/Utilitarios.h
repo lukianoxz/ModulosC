@@ -4,20 +4,20 @@
 #include <stdio.h>
 
 #include "Vetor.h"
-#include "String.h"
+#include "Texto.h"
 
-static void Printar_Vetor_Int(Vetor_int* Vetor){
+static void Imprimir_Vetor_Int(Vetor_int* Vetor){
     for (int i = 0; i < Vetor->Tamanho; i++){
         printf("%d ", Vetor->Conteudo[i]);
     }
     printf("\n");
 }
 
-static void Limpar_Vetor_De_String(Vetor_String_Ptr* Vetor){
+static void Limpar_Vetor_De_Texto(Vetor_Texto_Ptr* Vetor){
     for(int i = 0; i < Vetor->Tamanho; i++){
-        Erradicar_String(Vetor->Conteudo[i]);
+        Deletar_Texto(Vetor->Conteudo[i]);
     }
-    Erradicar_Vetor_String_Ptr(Vetor);
+    Deletar_Vetor_Texto_Ptr(Vetor);
 }
 
 #endif
