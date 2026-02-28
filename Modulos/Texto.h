@@ -105,7 +105,7 @@ static int Texto_Contem_Apenas_Int(Texto* T){
     return 1;
 }
 
-static int Int_Para_Texto(Texto* T){
+static int Texto_Para_Int(Texto* T){
     int Acumulador = 0;
     int Negativo = 0;
 
