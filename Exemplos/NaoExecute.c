@@ -1,36 +1,36 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "./Modulos/String.h"
-#include "./Modulos/Utilitarios.h"
+#include "../Modulos/Texto.h"
+#include "../Modulos/Utilitarios.h"
 
 int main(int argc, char* argv[]){
-    Vetor_String_Ptr* Argumentos;
+    Vetor_Texto_Ptr* Argumentos;
 
-    Argumentos = Criar_Vetor_String_Ptr();
+    Argumentos = Criar_Vetor_Texto_Ptr();
 
     for(int i = 0; i < argc; i++){
-        String* Temp;
-        Temp = Criar_Str();
+        Texto* Temp;
+        Temp = Criar_Texto();
 
-        Colocar_Texto(Temp, argv[i]);
+        Texto_Inserir(Temp, argv[i]);
 
-        Puxar_Elemento_Vetor_String_Ptr(Argumentos, Temp);
+        Vetor_Texto_Ptr_Inserir_Elemento(Argumentos, Temp);
     }
 
-    String* Alvo;
-    Alvo = Criar_Str();
+    Texto* Alvo;
+    Alvo = Criar_Texto();
 
-    Colocar_Texto(Alvo, "Oi");
+    Texto_Inserir(Alvo, "Oi");
 
     if (argc >= 2){
-        if (Comparar_String(Argumentos->Conteudo[1], Alvo)){
+        if (Comparar_Texto(Argumentos->Conteudo[1], Alvo)){
             printf("Oiiii voce descobriu o segredo\n");
         }
     }
 
-    Limpar_Vetor_De_String(Argumentos);
-    Erradicar_String(Alvo);
+    Limpar_Vetor_De_Texto(Argumentos);
+    Deletar_Texto(Alvo);
 
     return 0;
 }

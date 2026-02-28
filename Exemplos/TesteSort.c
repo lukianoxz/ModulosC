@@ -1,23 +1,23 @@
 #include <stdio.h>
-#include "./Modulos/Vetor.h"
-#include "./Modulos/AlgoritmosSort.h"
-#include "./Modulos/Utilitarios.h"
+#include "../Modulos/Vetor.h"
+#include "../Modulos/Arrumar.h"
+#include "../Modulos/Utilitarios.h"
 
 int main(){
     Vetor_int* VetorBaguncado = Criar_Vetor_int();
 
-    Puxar_Elemento_Vetor_int(VetorBaguncado, 7);
-    Puxar_Elemento_Vetor_int(VetorBaguncado, 2);
-    Puxar_Elemento_Vetor_int(VetorBaguncado, 92);
-    Puxar_Elemento_Vetor_int(VetorBaguncado, 1);
-    Puxar_Elemento_Vetor_int(VetorBaguncado, 1);
-    Puxar_Elemento_Vetor_int(VetorBaguncado, 14);
+    Vetor_int_Inserir_Elemento(VetorBaguncado, 7);
+    Vetor_int_Inserir_Elemento(VetorBaguncado, 2);
+    Vetor_int_Inserir_Elemento(VetorBaguncado, 92);
+    Vetor_int_Inserir_Elemento(VetorBaguncado, 1);
+    Vetor_int_Inserir_Elemento(VetorBaguncado, 1);
+    Vetor_int_Inserir_Elemento(VetorBaguncado, 14);
 
-    Printar_Vetor_Int(VetorBaguncado);
-    Sort_Vetor_int(VetorBaguncado, Sort_Int_Simples);
+    Imprimir_Vetor_Int(VetorBaguncado);
+    Arrumar_Vetor_Int_Bolha(VetorBaguncado);
 
-    Printar_Vetor_Int(VetorBaguncado);
-    Erradicar_Vetor_int(VetorBaguncado);
+    Imprimir_Vetor_Int(VetorBaguncado);
+    Deletar_Vetor_int(VetorBaguncado);
 
     return 0;
 }

@@ -6,7 +6,7 @@
 static void Arrumar_Vetor_Int_Bolha(Vetor_int* Vetor){
     int Vetor_Arrumado_Sinal;
 
-    while (true){
+    while (1){
         Vetor_Arrumado_Sinal = 1;
         for(int i = 0; i < (Vetor->Tamanho - 1); i++){
             if(Vetor->Conteudo[i] > Vetor->Conteudo[i+1]){

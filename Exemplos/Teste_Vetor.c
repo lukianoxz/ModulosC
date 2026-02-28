@@ -1,16 +1,16 @@
 #include <stdio.h>
-#include "./Modulos/Vetor.h"
+#include "../Modulos/Vetor.h"
 
 int main(){
     Vetor_int* Mv = Criar_Vetor_int();
 
-    Puxar_Elemento_Vetor_int(Mv, 2);
+    Vetor_int_Inserir_Elemento(Mv, 2);
 
     printf("\n");
     printf("%d", Mv->Conteudo[0]);
     printf("\n\n");
 
-    Erradicar_Vetor_int(Mv);
+    Deletar_Vetor_int(Mv);
 
     return 0;
 }

@@ -1,67 +1,67 @@
-#include "./Modulos/Texto.h"
+#include "../Modulos/Texto.h"
 
 int main(){
 
-    String* MinhaStr = Criar_Str();
+    Texto* MinhaStr = Criar_Texto();
 
-    Colocar_Texto(MinhaStr, "Ola meu nome e lucas");
+    Texto_Inserir(MinhaStr, "Ola meu nome e lucas");
 
-    Printar(MinhaStr);
-    Erradicar_String(MinhaStr);
+    Imprimir_Texto(MinhaStr);
+    Deletar_Texto(MinhaStr);
 
-    String* S2 = Criar_Str();
+    Texto* S2 = Criar_Texto();
 
-    Colocar_Texto(S2, "Testando a ");
-    Concatenar_Texto_String(S2, "Concatenacao de texto em strings");
-
-    printf("\n");
-    Printar(S2);
-
-    String* S3 = Criar_Str();
-
-    Colocar_Texto(S3, " e eu amo vitamina de abacate");
-
-    Concatenar_String_String(S2, S3);
+    Texto_Inserir(S2, "Testando a ");
+    Concatenar_Texto_Com_Lista_De_Letra(S2, "Concatenacao de texto em Textos");
 
     printf("\n");
-    Printar(S2);
+    Imprimir_Texto(S2);
 
-    Erradicar_String(S3);
+    Texto* S3 = Criar_Texto();
 
-    Limpar_String(S2);
-    Colocar_Texto(S2, "String foi limpa e vai ser reusada");
+    Texto_Inserir(S3, " e eu amo vitamina de abacate");
+
+    Concatenar_Texto_Com_Texto(S2, S3);
 
     printf("\n");
-    Printar(S2);
+    Imprimir_Texto(S2);
 
-    String* S4 = Criar_Str();
+    Deletar_Texto(S3);
 
-    printf("\nTestando sistema de comparacao de string\nTeste 1 String a = Sim e String b = Nao\n");
+    Limpar_Texto(S2);
+    Texto_Inserir(S2, "Texto foi limpa e vai ser reusada");
 
-    Limpar_String(S2);
+    printf("\n");
+    Imprimir_Texto(S2);
+
+    Texto* S4 = Criar_Texto();
+
+    printf("\nTestando sistema de comparacao de Texto\nTeste 1 Texto a = Sim e Texto b = Nao\n");
+
+    Limpar_Texto(S2);
     
-    Colocar_Texto(S2, "Sim");
-    Colocar_Texto(S4, "Nao");
+    Texto_Inserir(S2, "Sim");
+    Texto_Inserir(S4, "Nao");
 
-    if (Comparar_String(S2, S4)){
-        printf("Ue deu igual as strings reolhe o codigo tem um erro ai");
-        Erradicar_String(S2);
-        Erradicar_String(S4);
+    if (Comparar_Texto(S2, S4)){
+        printf("Ue deu igual as Textos reolhe o codigo tem um erro ai");
+        Deletar_Texto(S2);
+        Deletar_Texto(S4);
         return 0;
     } else {
-        printf("Comparacao falou que é diferente indo para o teste 2\nString a = Sim e String b = Sim\n");
-        Limpar_String(S4);
-        Colocar_Texto(S4, "Sim");
+        printf("Comparacao falou que é diferente indo para o teste 2\nTexto a = Sim e Texto b = Sim\n");
+        Limpar_Texto(S4);
+        Texto_Inserir(S4, "Sim");
     }
 
-    if (Comparar_String(S2, S4)){
-        printf("A comparacao entre duas strings iguais foi um sucesso teste encerrado\n");
+    if (Comparar_Texto(S2, S4)){
+        printf("A comparacao entre duas Textos iguais foi um sucesso teste encerrado\n");
     } else {
-        printf("As strings sao iguais mas deu erro na comparacao\n");
+        printf("As Textos sao iguais mas deu erro na comparacao\n");
     }
 
-    Erradicar_String(S2);
-    Erradicar_String(S4);
+    Deletar_Texto(S2);
+    Deletar_Texto(S4);
 
     return 0;
 }
