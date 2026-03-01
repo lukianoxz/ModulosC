@@ -16,6 +16,7 @@ struct Vector_##TYPE { \
     TYPE (*At)(Vector_##TYPE* Self, size_t Value); \
     void (*Concat)(Vector_##TYPE* Self, Vector_##TYPE* Value); \
     TYPE (*Pop)(Vector_##TYPE* Self); \
+    void (*ForEach)(Vector_##TYPE* Self, void (*Callback)(Vector_##TYPE* Self, size_t Index, TYPE Value)); \
     void (*Destroy)(Vector_##TYPE* Self); \
 }; \
 \
@@ -49,6 +50,11 @@ static TYPE Vector_##TYPE##_Pop(Vector_##TYPE* Self){ \
     Self->Size--; \
     return Last_Element; \
 } \
+static void Vector_##TYPE##_ForEach(Vector_##TYPE* Self, void (*Callback)(Vector_##TYPE* Self, size_t Index, TYPE Value)){ \
+    for(size_t i = 0; i < Self->Size; i++){ \
+        Callback(Self, i, Self->At(Self, i)); \
+    } \
+} \
 static void Destroy_Vector_##TYPE(Vector_##TYPE* Self){ \
     free(Self->Data); \
     free(Self); \
@@ -68,6 +74,7 @@ static Vector_##TYPE* New_Vector_##TYPE(){ \
     Temp->At = Vector_##TYPE##_At; \
     Temp->Concat = Vector_##TYPE##_Concat; \
     Temp->Pop = Vector_##TYPE##_Pop; \
+    Temp->ForEach = Vector_##TYPE##_ForEach; \
     Temp->Destroy = Destroy_Vector_##TYPE; \
 \
     return Temp; \
