@@ -15,6 +15,7 @@ struct Vector_##TYPE { \
     void (*Push)(Vector_##TYPE* Self, TYPE Value); \
     TYPE (*At)(Vector_##TYPE* Self, size_t Value); \
     void (*Concat)(Vector_##TYPE* Self, Vector_##TYPE* Value); \
+    TYPE (*Pop)(Vector_##TYPE* Self); \
     void (*Destroy)(Vector_##TYPE* Self); \
 }; \
 \
@@ -32,7 +33,7 @@ static TYPE Vector_##TYPE##_At(Vector_##TYPE* Self, size_t Value){ \
         fprintf(stderr, "Erro [C-Modules]: tentativa de acessar um vetor sem elementos\n"); \
         exit(1); \
     } \
-    if (Value > Self->Size){ \
+    if (Value >= Self->Size){ \
         fprintf(stderr, "Erro [C-Modules]: tentativa de acessar o indice (%zu) fora do limite do vetor (%zu)\n", Value, Self->Size - 1); \
         exit(1); \
     } \
@@ -42,6 +43,11 @@ static void Vector_##TYPE##_Concat(Vector_##TYPE* Self, Vector_##TYPE* Value){ \
     for(size_t i = 0; i < Value->Size; i++){ \
         Self->Push(Self, Value->At(Value, i)); \
     } \
+} \
+static TYPE Vector_##TYPE##_Pop(Vector_##TYPE* Self){ \
+    TYPE Last_Element = Self->At(Self, Self->Size - 1); \
+    Self->Size--; \
+    return Last_Element; \
 } \
 static void Destroy_Vector_##TYPE(Vector_##TYPE* Self){ \
     free(Self->Data); \
@@ -61,6 +67,7 @@ static Vector_##TYPE* New_Vector_##TYPE(){ \
     Temp->Push = Vector_##TYPE##_Push; \
     Temp->At = Vector_##TYPE##_At; \
     Temp->Concat = Vector_##TYPE##_Concat; \
+    Temp->Pop = Vector_##TYPE##_Pop; \
     Temp->Destroy = Destroy_Vector_##TYPE; \
 \
     return Temp; \

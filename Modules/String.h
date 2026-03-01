@@ -58,6 +58,7 @@ static String* New_String(){
     Temp->Append = String_Append;
     Temp->Print = String_Print;
     Temp->Guin = String_Guin;
+    Temp->Concat = String_Concat;
     Temp->Destroy = Destroy_String;
 
     return Temp;
