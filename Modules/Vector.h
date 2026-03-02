@@ -17,6 +17,10 @@ struct Vector_##TYPE { \
     void (*Concat)(Vector_##TYPE* Self, Vector_##TYPE* Value); \
     TYPE (*Pop)(Vector_##TYPE* Self); \
     void (*ForEach)(Vector_##TYPE* Self, void (*Callback)(Vector_##TYPE* Self, size_t Index, TYPE Value)); \
+    TYPE (*RemoveAt)(Vector_##TYPE* Self, size_t Index); \
+    void (*Reserve)(Vector_##TYPE* Self, size_t New_Capacity); \
+    int (*IsEmpty)(Vector_##TYPE* Self); \
+    void (*Shrink)(Vector_##TYPE* Self); \
     void (*Destroy)(Vector_##TYPE* Self); \
 }; \
 \
@@ -55,6 +59,27 @@ static void Vector_##TYPE##_ForEach(Vector_##TYPE* Self, void (*Callback)(Vector
         Callback(Self, i, Self->At(Self, i)); \
     } \
 } \
+static TYPE Vector_##TYPE##_RemoveAt(Vector_##TYPE* Self, size_t Index){ \
+    TYPE Removed_Element = Self->At(Self, Index); \
+    for(size_t i = Index; i < (Self->Size - 1); i++){ \
+        Self->Data[i] = Self->Data[i + 1]; \
+    } \
+    Self->Size--; \
+    return Removed_Element; \
+} \
+static void Vector_##TYPE##_Reserve(Vector_##TYPE* Self, size_t New_Capacity){ \
+    if (Self->Capacity >= New_Capacity) return; \
+\
+    Self->Capacity = New_Capacity; \
+    Self->Data = (TYPE*)realloc(Self->Data, Self->Type_Size * Self->Capacity); \
+} \
+static int Vector_##TYPE##_IsEmpty(Vector_##TYPE* Self){ \
+    return !Self->Size; \
+} \
+static void Vector_##TYPE##_Shrink(Vector_##TYPE* Self){ \
+    Self->Capacity = Self->Size; \
+    Self->Data = (TYPE*)realloc(Self->Data, Self->Type_Size * Self->Capacity); \
+} \
 static void Destroy_Vector_##TYPE(Vector_##TYPE* Self){ \
     free(Self->Data); \
     free(Self); \
@@ -75,10 +100,16 @@ static Vector_##TYPE* New_Vector_##TYPE(){ \
     Temp->Concat = Vector_##TYPE##_Concat; \
     Temp->Pop = Vector_##TYPE##_Pop; \
     Temp->ForEach = Vector_##TYPE##_ForEach; \
+    Temp->RemoveAt = Vector_##TYPE##_RemoveAt;\
+    Temp->Reserve = Vector_##TYPE##_Reserve; \
+    Temp->IsEmpty = Vector_##TYPE##_IsEmpty; \
+    Temp->Shrink = Vector_##TYPE##_Shrink; \
     Temp->Destroy = Destroy_Vector_##TYPE; \
 \
     return Temp; \
 }
+
+#define CREATE_FOREACH(NAME, TYPE) static void NAME(Vector_##TYPE* Self, size_t Index, TYPE Value)
 
 DEFINE_VECTOR(int);
 DEFINE_VECTOR(char);
